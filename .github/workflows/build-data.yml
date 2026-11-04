@@ -3,7 +3,7 @@ name: build trip data
 on:
   workflow_dispatch:
   schedule:
-    # Indego posts each quarter's file a few weeks after it ends
+    # 5th of each month; Indego usually posts a quarter 2-4 weeks after it ends
     - cron: "17 12 5 * *"
 
 permissions:
