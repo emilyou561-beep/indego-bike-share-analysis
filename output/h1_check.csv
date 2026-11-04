@@ -1,0 +1,8 @@
+metric,2025,2026,change_pct
+active_stations,274.0,318.0,16.06
+avg_duration,16.96,17.15,1.14
+ebike_minutes,5985074.0,8211350.0,37.2
+minutes_per_station,35115.91,37176.67,5.87
+standard_minutes,3636686.0,3610831.0,-0.71
+trip_minutes,9621760.0,11822181.0,22.87
+trips,567339.0,689234.0,21.49

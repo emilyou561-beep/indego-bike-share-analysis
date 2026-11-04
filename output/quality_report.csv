@@ -1,0 +1,7 @@
+check_name,n
+rows loaded,4942856
+unparseable start_time,0
+virtual station 3000,166
+duration < 1 or > 24h,0
+duplicate trip_id,0
+rows kept,4942690
