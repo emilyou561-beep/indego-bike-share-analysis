@@ -1,1 +1,2 @@
 pandas>=2.0
+duckdb>=1.1
