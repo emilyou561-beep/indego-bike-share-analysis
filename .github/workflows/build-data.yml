@@ -1,0 +1,48 @@
+name: build trip data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Indego posts each quarter's file a few weeks after it ends
+    - cron: "17 12 5 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache raw trip files
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: indego-raw-${{ github.run_id }}
+          restore-keys: indego-raw-
+
+      - run: pip install -r requirements.txt
+
+      - name: Download
+        run: python pipeline/download.py
+
+      - name: Build
+        run: python pipeline/build.py
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -q -m "Rebuild trip summaries"
+            git push -q
+          fi
